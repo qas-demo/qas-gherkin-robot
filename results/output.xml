@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20170317 13:53:41.221" generator="Robot 3.0 (Python 2.7.13 on win32)">
+<suite source="C:\codelibs\projects\qas-gherkin-robot\features\CallPostmanEcho.robot" id="s1" name="CallPostmanEcho">
+<test id="s1-t1" name="Call Postman Echo">
+<kw name="Given A session with Postman Echo">
+<kw name="Create Session" library="ExtendedRequestsLibrary">
+<doc>Create and return a HTTP session object to a server.</doc>
+<arguments>
+<arg>Postman</arg>
+<arg>${API HOST}</arg>
+</arguments>
+<msg timestamp="20170317 13:53:45.274" level="INFO">Creating Session using : alias=Postman, url=https://postman-echo.com, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20170317 13:53:45.275" starttime="20170317 13:53:45.273"></status>
+</kw>
+<status status="PASS" endtime="20170317 13:53:45.276" starttime="20170317 13:53:45.273"></status>
+</kw>
+<kw name="When Call the /get?test=123">
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on given items.</doc>
+<arguments>
+<arg>test=123</arg>
+</arguments>
+<assign>
+<var>&amp;{params}</var>
+</assign>
+<msg timestamp="20170317 13:53:45.289" level="INFO">&amp;{params} = { test=123 }</msg>
+<status status="PASS" endtime="20170317 13:53:45.290" starttime="20170317 13:53:45.284"></status>
+</kw>
+<kw name="Get Request" library="ExtendedRequestsLibrary">
+<doc>Send a GET request on the session object found in the cache using the given ``label``.</doc>
+<arguments>
+<arg>label=Postman</arg>
+<arg>uri=/get</arg>
+<arg>params=&amp;{params}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20170317 13:53:47.086" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20170317 13:53:47.086" starttime="20170317 13:53:45.290"></status>
+</kw>
+<kw name="Log Many" library="BuiltIn">
+<doc>Logs the given messages as separate entries using the INFO level.</doc>
+<arguments>
+<arg>${resp.text}</arg>
+</arguments>
+<msg timestamp="20170317 13:53:47.086" level="INFO">{"args":{"test":"123"},"headers":{"host":"postman-echo.com","accept":"*/*","accept-encoding":"gzip, deflate","user-agent":"python-requests/2.10.0","x-forwarded-port":"443","x-forwarded-proto":"https"},"url":"https://postman-echo.com/get?test=123"}</msg>
+<status status="PASS" endtime="20170317 13:53:47.087" starttime="20170317 13:53:47.086"></status>
+</kw>
+<kw name="Get Json Value" library="HttpLibrary.HTTP">
+<doc>Get the target node of the JSON document `json_string` specified by `json_pointer`.</doc>
+<arguments>
+<arg>${resp.text}</arg>
+<arg>/headers/user-agent</arg>
+</arguments>
+<assign>
+<var>${header}</var>
+</assign>
+<msg timestamp="20170317 13:53:47.089" level="INFO">${header} = "python-requests/2.10.0"</msg>
+<status status="PASS" endtime="20170317 13:53:47.089" starttime="20170317 13:53:47.087"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${header}</arg>
+</arguments>
+<status status="PASS" endtime="20170317 13:53:47.111" starttime="20170317 13:53:47.089"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${header}</arg>
+</arguments>
+<msg timestamp="20170317 13:53:47.113" level="INFO">"python-requests/2.10.0"</msg>
+<status status="PASS" endtime="20170317 13:53:47.113" starttime="20170317 13:53:47.112"></status>
+</kw>
+<status status="PASS" endtime="20170317 13:53:47.114" starttime="20170317 13:53:45.278"></status>
+</kw>
+<kw name="Then Get back /headers/user-agent equals python-requests/2.10.0">
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on given items.</doc>
+<arguments>
+<arg>test=123</arg>
+</arguments>
+<assign>
+<var>&amp;{params}</var>
+</assign>
+<msg timestamp="20170317 13:53:47.117" level="INFO">&amp;{params} = { test=123 }</msg>
+<status status="PASS" endtime="20170317 13:53:47.117" starttime="20170317 13:53:47.116"></status>
+</kw>
+<kw name="Get Request" library="ExtendedRequestsLibrary">
+<doc>Send a GET request on the session object found in the cache using the given ``label``.</doc>
+<arguments>
+<arg>label=Postman</arg>
+<arg>uri=/get</arg>
+<arg>params=&amp;{params}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20170317 13:53:47.154" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20170317 13:53:47.154" starttime="20170317 13:53:47.117"></status>
+</kw>
+<kw name="Log Many" library="BuiltIn">
+<doc>Logs the given messages as separate entries using the INFO level.</doc>
+<arguments>
+<arg>${resp.text}</arg>
+</arguments>
+<msg timestamp="20170317 13:53:47.155" level="INFO">{"args":{"test":"123"},"headers":{"host":"postman-echo.com","accept":"*/*","accept-encoding":"gzip, deflate","cookie":"sails.sid=s%3AZqWXeoF07gfj07F8LRQYPfFmCSct3mgu.hcqLQRNm0wyA7%2BxRDoFz6lfLuT%2FLv%2B%2BDs3murpdGDSA","user-agent":"python-requests/2.10.0","x-forwarded-port":"443","x-forwarded-proto":"https"},"url":"https://postman-echo.com/get?test=123"}</msg>
+<status status="PASS" endtime="20170317 13:53:47.155" starttime="20170317 13:53:47.154"></status>
+</kw>
+<kw name="Get Json Value" library="HttpLibrary.HTTP">
+<doc>Get the target node of the JSON document `json_string` specified by `json_pointer`.</doc>
+<arguments>
+<arg>${resp.text}</arg>
+<arg>/headers/user-agent</arg>
+</arguments>
+<assign>
+<var>${header}</var>
+</assign>
+<msg timestamp="20170317 13:53:47.157" level="INFO">${header} = "python-requests/2.10.0"</msg>
+<status status="PASS" endtime="20170317 13:53:47.158" starttime="20170317 13:53:47.156"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${header}</arg>
+</arguments>
+<status status="PASS" endtime="20170317 13:53:47.187" starttime="20170317 13:53:47.158"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${header}</arg>
+</arguments>
+<msg timestamp="20170317 13:53:47.188" level="INFO">"python-requests/2.10.0"</msg>
+<status status="PASS" endtime="20170317 13:53:47.189" starttime="20170317 13:53:47.188"></status>
+</kw>
+<status status="PASS" endtime="20170317 13:53:47.189" starttime="20170317 13:53:47.115"></status>
+</kw>
+<status status="PASS" endtime="20170317 13:53:47.353" critical="yes" starttime="20170317 13:53:45.271"></status>
+</test>
+<status status="PASS" endtime="20170317 13:53:47.924" starttime="20170317 13:53:41.256"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="CallPostmanEcho" pass="1">CallPostmanEcho</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

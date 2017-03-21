@@ -1,0 +1,4 @@
+--configure LineTooLong:200
+--configure TooFewKeywordSteps:1
+--configure TooManyTestCases:20
+--configure TooManyTestSteps:16
